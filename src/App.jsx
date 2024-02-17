@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 const App = () => {
   /*⬇➡️➡️➡️
   we are not including the App.js file in the components
@@ -38,7 +39,7 @@ const App = () => {
 
   return (
     <>
-      <h1>Let's get started!!</h1>
+      <NewExpense />
       <Expenses item={expenses} />
     </>
   );
