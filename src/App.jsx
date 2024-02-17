@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
-function App() {
+const App = () => {
   /*⬇➡️➡️➡️
   we are not including the App.js file in the components
   folder as it's function is uniqe(acting as a root js file
@@ -54,6 +54,6 @@ function App() {
   // );
 
   //  )
-}
+};
 
 export default App;

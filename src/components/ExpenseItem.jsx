@@ -2,7 +2,7 @@ import "./ExpenseItem.css";
 import ExpenseDate from "./Expenses/ExpenseDate";
 import Card from "./Expenses/UI/Card";
 // we pass the object that collects alll the data being passed as props !!
-function ExpenseItem(props) {
+const ExpenseItem = (props) => {
   // const classes = "card " + props.className;
   return (
     <>
@@ -16,6 +16,6 @@ function ExpenseItem(props) {
       </Card>
     </>
   );
-}
+};
 
 export default ExpenseItem;
