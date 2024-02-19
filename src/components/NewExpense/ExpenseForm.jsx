@@ -1,76 +1,149 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 function ExpenseForm() {
-  /*
-  // using multiple usestaates(🔥🔥 OR YOU CAN USE ONE LIKE BELOW)
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [entereDate, setEnteredDate] = useState("");
 
-  const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
-  };
-  const AmountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
-  };
-  const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
-  };
+/*
 
-  */
+// ➡️➡️➡️Simplest way to implement this although it has its won draw backs!!....could end up working with an outdated data!!
+const [enrteredTitle, setEnteredTitle]= useState("")
+const [enteredAmount, setEnteredAmount]= useState("")
+const [enteredDate, setEnteredDate]= useState("")
 
-  const [userInput, setUserInput] = useState({
-    enteredTitle: "",
-    enteredAmount: "",
-    enteredDate: "",
-  });
 
-  const titleChangeHandler = (event) => {
-    // 🔥🔥🔥 this method may not work in al situations so we need to use the next style!!
-    // setUserInput({
-    //   ...userInput,
-    //   enteredTitle: event.target.value,
-    // });
 
-    //➡️➡️➡️This way we make sure we are working with the most recent state and not an outdated update due to scheduling !! ⬅️⬅️⬅️
-    setUserInput((prevState)=>{
-      return {...prevState, enteredTitle:event.target.value}
-    })
-  };
-  // the following fucntion are a way to say the data being passed through the input fields!!
-  const amountChangeHandler = (event) => {
-    // setUserInput({
-    //   ...userInput,
-    // enteredAmount:event.target.value;
-    // })
+const titleChangeHandler=(event)=>{
+  setEnteredDate(event.target.value)
+}
+
+const amountChangeHandler=(event)=>{
+  setEnteredAmount(event.target.value)
+}
+
+const dateChangeHandler=(event)=>{
+  setEnteredDate(event.target.value)
+}
+
+
+const submitHandler=(event)=>{
+  event.preventDefault();
+
+
+  const expenseData={
+    title: enrteredTitle,
+    amount: enteredAmount,
+    date:new Date(enteredDate)
+  }
+
+  console.log(expenseData)
+}
+*/
+
+
+// OR (with sinlge userstate rather than having multiple ones for every variable change@@)
+
+
+/*
+//➡️➡️➡️still doesn't resolve the issue mentioed above!! 
+const [userInput, setUserInput]= useState({
+  enteredTitle:"",
+  enteredAmount: "",
+  enteredDate: "",
+})
+
+
+const titleChangeHandler=(event)=>{
+  setUserInput({
+    ...userInput, 
+    enteredTitle:event.target.value,
+  })
+}
+
+const amountChangeHandler=(event)=>{
+  setUserInput({
+    ...userInput,
+    enteredAmount:event.target.value
+  })
+}
+
+
+const dateChangeHandler=(event)=>{
+  setUserInput({
+    ...userInput,
+    enteredDate:event.target.value,
+  })
+}
+
+
+
+const submitHandler=(event)=>{
+  event.preventDefault();
+
+  const expenseData={
+    ...userInput,
+    enteredDate: new Date(userInput.enteredDate)
+  }
+  console.log(expenseData)
+}
+
+*/
+
+
+
+// OR ( this one will be able to work with the immediete previous data!!)
+
+
+const [userInput, setUserInput]= useState({
+  enteredTitle:"",
+  enteredAmount: "",
+  enteredDate: "",
+})
+
+const titleChangeHandler=(event)=>{
+  setUserInput((prevState)=>{
+    return {...prevState, enteredTitle:event.target.value}
+  })
+}
+
+const amountChangeHandler=(event)=>{
+
   setUserInput((prevState)=>{
     return {...prevState, enteredAmount: event.target.value}
   })
-  };
+}
 
-  const dateChangeHandler = (event) => {
-    // setUserInput({
-    // ...userInput,
-    // enteredDate:event.target.value
-    // })
-    setUserInput((prevState)=>{
-      return {...prevState, enteredDate:event.target.value}
-    })
-  };
+const dateChangeHandler=(event)=>{
+  setUserInput((prevState)=>{
+    return {...prevState, enteredDate:event.target.value}
+  })
+}
+
+
+const submitHandler=(event)=>{
+  event.preventDefault();
+  const expenseData={
+    ...userInput,
+    enteredDate: new Date(userInput.enteredDate)
+  }
+
+  console.log(expenseData)
+}
+
+
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label htmlFor="">Title</label>
           <input type="text" onChange={titleChangeHandler} />
         </div>
         <div className="new-expense__control">
-          <label htmlFor="" onChange={amountChangeHandler}>Amount</label>
-          <input type="number" min="0.01" max="0.01" />
+          <label htmlFor="" >Amount</label>
+          <input type="number"  min="0.01" max="1000000" onChange={amountChangeHandler}/>
         </div>
         <div className="new-expense__control">
-          <label htmlFor="" onChange={dateChangeHandler}>Date</label>
-          <input type="date" min="2019-01-01" max="2024-02-17" />
+          <label htmlFor="" >Date</label>
+          <input type="date" min="2019-01-01" max="2024-02-17" onChange={dateChangeHandler} />
         </div>
         <div className="new-expense__actions">
           <button type="submit" className="new-expense__submit-button">Add Expense</button>
@@ -81,3 +154,4 @@ function ExpenseForm() {
 }
 
 export default ExpenseForm;
+
