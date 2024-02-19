@@ -12,7 +12,7 @@ const ExpenseItem = (props) => {
   
   */
   const [title, setTitle] = useState(props.title);
-  console.log("being reEvaluated by React!");
+  // console.log("being reEvaluated by React!");
 
   const clickHandler = () => {
     // vallue will be updated upon click to the following value!!
