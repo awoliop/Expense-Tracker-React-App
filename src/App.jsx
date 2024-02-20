@@ -37,15 +37,28 @@ const App = () => {
     },
   ];
 
+  const addExpenseHandler=(expense)=>{
+    const ExpensesToBeAdded={
+      ...expense,
+      
+    }
+
+
+    // expenses.push(ExpensesToBeAdded);
+    // console.log(expenses)
+
+
+  
+  }
+
   return (
     <>
-      <NewExpense />
+      <NewExpense  onAddExpense={addExpenseHandler}/>
       <Expenses item={expenses} />
     </>
   );
 
   // instead of using jsx code like the above we can use react built in methods like below , but is is a bit tedius and unreadable !!...so we stick with JSX!
-
   //  return (
   // React.createElement(
   // "div",

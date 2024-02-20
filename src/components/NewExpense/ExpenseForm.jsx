@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
-function ExpenseForm() {
+function ExpenseForm(props) {
 
 /*
 
@@ -132,8 +132,7 @@ const submitHandler=(event)=>{
   }
 
   
-
-  console.log(expenseData)
+  props.onSaveExpenseData(expenseData);
   // for when we want to clear the input fields we ned to implement what we call Two-way binding!!(where we can not just listen to the inputs but also make changes to it!!)
   setUserInput({
     enteredTitle: "",
