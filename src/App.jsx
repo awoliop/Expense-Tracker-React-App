@@ -15,13 +15,13 @@ const App = () => {
       id: "e1",
       title: "Toilet Paper",
       amount: "94.12",
-      date: new Date(2021, 7, 14),
+      date: new Date(2022, 7, 14),
     },
     {
       id: "e2",
       title: "new TV",
       amount: "799.49",
-      date: new Date(2021, 2, 12),
+      date: new Date(2020, 2, 12),
     },
     {
       id: "e3",
@@ -33,7 +33,7 @@ const App = () => {
       id: "e1",
       title: "New Desk (wooden)",
       amount: "450",
-      date: new Date(2021, 5, 12),
+      date: new Date(2019, 5, 12),
     },
   ];
 
@@ -42,12 +42,8 @@ const App = () => {
       ...expense,
       
     }
-
-
     // expenses.push(ExpensesToBeAdded);
     // console.log(expenses)
-
-
   
   }
 
@@ -58,16 +54,7 @@ const App = () => {
     </>
   );
 
-  // instead of using jsx code like the above we can use react built in methods like below , but is is a bit tedius and unreadable !!...so we stick with JSX!
-  //  return (
-  // React.createElement(
-  // "div",
-  // {},
-  // React.createElement("h2", {}, "let's get started!!"),
-  // React.createElement(Expenses, { item: expenses })
-  // );
-
-  //  )
+  
 };
 
 export default App;
