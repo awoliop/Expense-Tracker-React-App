@@ -20,11 +20,4 @@ module.exports = {
   },
 };
 
-// add a printwidth of 220 to the prettier config file
-// Path: .prettierrc.cjs
-// Compare this snippet from src/components/NewExpense/ExpenseForm.jsx:
-// import React, { useState } from 'react';
-// import './ExpenseForm.css';
-// function ExpenseForm() {
 
-//   const [enteredTitle, setEnteredTitle] = useState('');
