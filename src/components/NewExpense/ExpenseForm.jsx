@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 function ExpenseForm(props) {
 
-/*
+
 
 // ➡️➡️➡️Simplest way to implement this although it has its won draw backs!!....could end up working with an outdated data!!
 const [enteredTitle, setEnteredTitle]= useState("")
@@ -36,13 +36,14 @@ const submitHandler=(event)=>{
 
   console.log(expenseData);
 
+  props.onSaveExpenseData(expenseData);
   setEnteredTitle("")
   setEnteredAmount("")
   setEnteredDate("")
 }
 
 
-*/
+
 
 
 // OR (with sinlge userstate rather than having multiple ones for every variable change@@)
@@ -97,7 +98,7 @@ const submitHandler=(event)=>{
 
 // OR ( this one will be able to work with the immediete previous data!!)
 
-
+/*
 const [userInput, setUserInput]= useState({
   enteredTitle:"",
   enteredAmount: "",
@@ -105,30 +106,32 @@ const [userInput, setUserInput]= useState({
 })
 
 const titleChangeHandler=(event)=>{
-  setUserInput((prevState)=>{
-    return {...prevState, enteredTitle:event.target.value}
+  setUserInput((userInput)=>{
+    return {...userInput, enteredTitle:event.target.value}
   })
 }
 
 const amountChangeHandler=(event)=>{
 
-  setUserInput((prevState)=>{
-    return {...prevState, enteredAmount: event.target.value}
+  setUserInput((userInput)=>{
+    return {...userInput, enteredAmount: event.target.value}
   })
 }
 
 const dateChangeHandler=(event)=>{
-  setUserInput((prevState)=>{
-    return {...prevState, enteredDate:event.target.value}
+  setUserInput((userInput)=>{
+    return {...userInput, enteredDate:event.target.value}
   })
 }
+
 
 
 const submitHandler=(event)=>{
   event.preventDefault();
   const expenseData={
     ...userInput,
-    enteredDate: new Date(userInput.enteredDate)
+    enteredDate: new Date(2019, 5, 12)
+    
   }
 
   
@@ -141,7 +144,7 @@ const submitHandler=(event)=>{
   })
 }
 
-
+*/
 
 
 
@@ -151,18 +154,18 @@ const submitHandler=(event)=>{
         <div className="new-expense__control">
           <label htmlFor="">Title</label>
           {/* the value attribute will fill up the field with the value of the enteredTitle, which is being set to empty upon submission , take a look into the function !! */}
-          <input type="text" value={userInput.enteredTitle} onChange={titleChangeHandler} />
+          <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
         </div>
         <div className="new-expense__control">
           <label htmlFor="" >Amount</label>
-          <input type="number"  min="0.01" max="1000000" value={userInput.enteredAmount} onChange={amountChangeHandler}/>
+          <input type="number"  min="0.01" max="1000000" value={enteredAmount} onChange={amountChangeHandler}/>
         </div>
         <div className="new-expense__control">
           <label htmlFor="" >Date</label>
-          <input type="date" min="2019-01-01" max="2024-02-17"  value={userInput.enteredDate} onChange={dateChangeHandler} />
+          <input type="date" min="2010-01-01" max="2024-02-17"  value={enteredDate} onChange={dateChangeHandler} />
         </div>
         <div className="new-expense__actions">
-          <button type="submit" className="new-expense__submit-button">Add Expense</button>
+          <button type="submit" className="new-expense__submit-button" >Add Expense</button>
         </div>
       </div>
     </form>

@@ -4,10 +4,10 @@ import ExpenseForm from "./ExpenseForm";
 
 function NewExpense(props) {
 
-  const saveExpenseHnadler=(expenseDateNew)=>{
+  const saveExpenseHnadler=(expenseDataNew)=>{
     const expenseData= {
-      ...expenseDateNew,
       id: Math.random().toString(),
+      ...expenseDataNew,
     };
     console.log("In NewExpense")
     console.log(expenseData)

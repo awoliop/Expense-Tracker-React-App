@@ -1,16 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
-const App = () => {
-  /*⬇➡️➡️➡️
-  we are not including the App.js file in the components
-  folder as it's function is uniqe(acting as a root js file
-  where every other component is rendered on which in turn
-  is rendered under the main.jsx file )
-  */
 
-  const expenses = [
+const DUMMY_EXPENSES= [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -36,21 +29,27 @@ const App = () => {
       date: new Date(2019, 5, 12),
     },
   ];
+const App = () => {
+  /*⬇➡️➡️➡️
+  we are not including the App.js file in the components
+  folder as it's function is uniqe(acting as a root js file
+  where every other component is rendered on which in turn
+  is rendered under the main.jsx file )
+  */
 
-  const addExpenseHandler=(expense)=>{
-    const ExpensesToBeAdded={
-      ...expense,
-      
-    }
-    // expenses.push(ExpensesToBeAdded);
-    // console.log(expenses)
+  const [expenses, setExpenses] =useState(DUMMY_EXPENSES);
+
+  const addExpenseHandler = (expense) => {
+    setExpenses([expense,...expenses]);
+  };
+
   
-  }
 
   return (
     <>
       <NewExpense  onAddExpense={addExpenseHandler}/>
-      <Expenses item={expenses} />
+      <Expenses item={expenses}   />
+
     </>
   );
 
