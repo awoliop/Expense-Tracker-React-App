@@ -55,6 +55,8 @@ const App = () => {
     last_name: "",
   });
 
+  const [data, setData] = useState(DUMMY__DATA);
+
   const firstNameHandler = (event) => {
     setTest((prevState) => {
       return { ...prevState, first_name: event.target.value };
@@ -70,8 +72,10 @@ const App = () => {
   const submitHandler1 = (event) => {
     event.preventDefault();
 
-    const the_data = [...DUMMY__DATA, test];
-    console.log(the_data);
+    setData((prevState) => {
+      return [test, ...prevState];
+    });
+    console.log(data);
 
     setTest({
       first_name: "",
