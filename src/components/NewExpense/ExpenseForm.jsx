@@ -1,55 +1,43 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 function ExpenseForm(props) {
+  // ➡️➡️➡️Simplest way to implement this although it has its won draw backs!!....could end up working with an outdated data!!
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
+  const titleChangeHandler = (event) => {
+    setEnteredTitle(event.target.value);
+  };
 
+  const amountChangeHandler = (event) => {
+    setEnteredAmount(event.target.value);
+  };
 
-// ➡️➡️➡️Simplest way to implement this although it has its won draw backs!!....could end up working with an outdated data!!
-const [enteredTitle, setEnteredTitle]= useState("")
-const [enteredAmount, setEnteredAmount]= useState("")
-const [enteredDate, setEnteredDate]= useState("")
+  const dateChangeHandler = (event) => {
+    setEnteredDate(event.target.value);
+  };
 
+  const submitHandler = (event) => {
+    event.preventDefault();
 
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
 
-const titleChangeHandler=(event)=>{
-  setEnteredTitle(event.target.value)
-}
+    console.log(expenseData);
 
-const amountChangeHandler=(event)=>{
-  setEnteredAmount(event.target.value)
-}
+    props.onSaveExpenseData(expenseData);
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
+  };
 
-const dateChangeHandler=(event)=>{
-  setEnteredDate(event.target.value)
-}
+  // OR (with sinlge userstate rather than having multiple ones for every variable change@@)
 
-
-const submitHandler=(event)=>{
-  event.preventDefault();
-
-
-  const expenseData={
-    title: enteredTitle,
-    amount: enteredAmount,
-    date:new Date(enteredDate)
-  }
-
-  console.log(expenseData);
-
-  props.onSaveExpenseData(expenseData);
-  setEnteredTitle("")
-  setEnteredAmount("")
-  setEnteredDate("")
-}
-
-
-
-
-
-// OR (with sinlge userstate rather than having multiple ones for every variable change@@)
-
-
-/*
+  /*
 //➡️➡️➡️still doesn't resolve the issue mentioed above!! 
 const [userInput, setUserInput]= useState({
   enteredTitle:"",
@@ -94,11 +82,9 @@ const submitHandler=(event)=>{
 
 */
 
+  // OR ( this one will be able to work with the immediete previous data!!)
 
-
-// OR ( this one will be able to work with the immediete previous data!!)
-
-/*
+  /*
 const [userInput, setUserInput]= useState({
   enteredTitle:"",
   enteredAmount: "",
@@ -146,26 +132,42 @@ const submitHandler=(event)=>{
 
 */
 
-
-
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label htmlFor="">Title</label>
           {/* the value attribute will fill up the field with the value of the enteredTitle, which is being set to empty upon submission , take a look into the function !! */}
-          <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
-          <label htmlFor="" >Amount</label>
-          <input type="number"  min="0.01" max="1000000" value={enteredAmount} onChange={amountChangeHandler}/>
+          <label htmlFor="">Amount</label>
+          <input
+            type="number"
+            min="0.01"
+            max="1000000"
+            value={enteredAmount}
+            onChange={amountChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
-          <label htmlFor="" >Date</label>
-          <input type="date" min="2010-01-01" max="2024-02-17"  value={enteredDate} onChange={dateChangeHandler} />
+          <label htmlFor="">Date</label>
+          <input
+            type="date"
+            min="2010-01-01"
+            max="2024-02-17"
+            value={enteredDate}
+            onChange={dateChangeHandler}
+          />
         </div>
         <div className="new-expense__actions">
-          <button type="submit" className="new-expense__submit-button" >Add Expense</button>
+          <button type="submit" className="new-expense__submit-button">
+            Add Expense
+          </button>
         </div>
       </div>
     </form>
@@ -173,4 +175,3 @@ const submitHandler=(event)=>{
 }
 
 export default ExpenseForm;
-
